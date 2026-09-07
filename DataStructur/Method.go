@@ -1,6 +1,8 @@
 package datastructur
 
-import "errors"
+import (
+	"errors"
+)
 
 func Mananger()*taskManenger{
 	return &taskManenger{
@@ -10,13 +12,11 @@ func Mananger()*taskManenger{
 }
 
 func (t *taskManenger)NewTask(name string, tag string, title string)(*taskManenger, error){
-	if Name == "" && tag == ""{
+	if name == "" || tag == ""{
 		return &taskManenger{}, errors.New("не ввели обязательные данные")
 	}
-	t.ID++
-	t.Task = append([]taskBar{
-		Name: name,
+	t.ID += 1
+	t.Task = append(t.Task,taskBar{name, tag, false, title})
 
-	})
-	return &taskManenger{},nil
+	return &taskManenger{}, nil
 }

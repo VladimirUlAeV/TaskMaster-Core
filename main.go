@@ -39,10 +39,11 @@ func main(){
 			fmt.Println("Введите описание задачи:")
 			InputUser.Scan()
  			Title := InputUser.Text()
-			Mananger, err = datastructur.NewTask(Name, Tag, Title)
+			Mananger, err = datastructur.Mananger().NewTask(Name, Tag, Title)
 			if err != nil {
-			fmt.Println("Задача не создана по причине ", err)
+			fmt.Println("Задача",Mananger.ID, "не создана по причине ", err)
 			} 
+			fmt.Println("")
 
 		case "3":
 
