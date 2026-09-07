@@ -1,7 +1,7 @@
 package datastructur
 
 type taskBar struct {
-	Name   string
+	Id int
 	Tag    string
 	Status bool // False - не выполнина
 	Title  string
@@ -9,5 +9,5 @@ type taskBar struct {
 
 type taskManenger struct {
 	Task []taskBar
-	ID   int
+	HowManyTask   int
 }

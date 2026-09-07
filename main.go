@@ -5,6 +5,7 @@ import (
 	"bufio"	
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func menu(){
@@ -17,7 +18,7 @@ func menu(){
 } 
 
 func main(){
-	Mananger := datastructur.Mananger()
+	mananger := datastructur.Mananger()
 	var err error
 	fmt.Println("Приветствую вас в Task Master!")
 	InputUser := bufio.NewScanner(os.Stdin)
@@ -28,25 +29,32 @@ func main(){
 		InputText := InputUser.Text()
 		switch InputText{
 		case "1":
-
+			mananger.AllTask()
 		case "2":
-			fmt.Println("Введите название задачи(обязательно):")
-			InputUser.Scan()
- 			Name := InputUser.Text()
 			fmt.Println("Введите тэг задачи(обязательно):")
 			InputUser.Scan()
  			Tag := InputUser.Text()
 			fmt.Println("Введите описание задачи:")
 			InputUser.Scan()
  			Title := InputUser.Text()
-			Mananger, err = datastructur.Mananger().NewTask(Name, Tag, Title)
+			err = mananger.NewTask(Tag, Title)
 			if err != nil {
-			fmt.Println("Задача",Mananger.ID, "не создана по причине ", err)
-			} 
-			fmt.Println("")
-
+			fmt.Println("Задача", "не создана по причине", err)
+			}else{
+				fmt.Println("Задача успешно добавлена")
+			}
 		case "3":
-
+			fmt.Print("Введите айди задачи: ")
+			InputUser.Scan()
+			IdStr := InputUser.Text()
+			Id, err := strconv.Atoi(IdStr)
+			if err != nil{
+				fmt.Println("Ошибка: пустое или не правильное значение")
+			}
+			Error3 := mananger.TaskDone(Id)
+			if Error3 != nil{
+				fmt.Println(Error3)
+			}
 		case "4":
 
 		case "5":
