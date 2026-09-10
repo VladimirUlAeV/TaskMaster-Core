@@ -19,8 +19,8 @@ func menu(){
 
 func main(){
 	mananger := datastructur.Mananger()
-	var err error
 	var Counter int 
+	var err error
 	fmt.Println("Приветствую вас в Task Master!")
 	InputUser := bufio.NewScanner(os.Stdin)
 	for{
@@ -48,13 +48,13 @@ func main(){
 			fmt.Print("Введите айди задачи: ")
 			InputUser.Scan()
 			IdStr := InputUser.Text()
-			Id, err := strconv.Atoi(IdStr)
-			if err != nil{
+			Id, err2 := strconv.Atoi(IdStr)
+			if err2 != nil{
 				fmt.Println("Ошибка: пустое или не правильное значение")
 			}
-			Error3 := mananger.TaskDone(Id)
-			if Error3 != nil{
-				fmt.Println(Error3)
+			Err3 := mananger.TaskDone(Id)
+			if Err3 != nil{
+				fmt.Println(Err3)
 			}
 		case "4":
 

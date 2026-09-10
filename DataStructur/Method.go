@@ -34,13 +34,12 @@ func (t *taskManenger)AllTask(){
 
 func (t *taskManenger)TaskDone(ID int)error{
 	for index, v := range t.Task {
+		fmt.Println("В цикл передалось: ", v.Id)
     	if v.Id == ID{
 			t.Task[index].Status = true
 			fmt.Println("Статус задачи",ID,"успешно обновлен")
 			return nil
-		}else{
-			return errors.New("Нету такой задачи")
 		}
 	}
-	return errors.New("Вы ещё не создали задачу")
+		return errors.New("Вы ещё не создали задачу")
 }
