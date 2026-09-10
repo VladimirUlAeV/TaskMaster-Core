@@ -20,7 +20,6 @@ func menu(){
 func main(){
 	mananger := datastructur.Mananger()
 	var Counter int 
-	var err error
 	fmt.Println("Приветствую вас в Task Master!")
 	InputUser := bufio.NewScanner(os.Stdin)
 	for{
@@ -32,6 +31,7 @@ func main(){
 		case "1":
 			mananger.AllTask()
 		case "2":
+			var err error
 			fmt.Println("Введите тэг задачи(обязательно):")
 			InputUser.Scan()
  			Tag := InputUser.Text()
@@ -48,18 +48,34 @@ func main(){
 			fmt.Print("Введите айди задачи: ")
 			InputUser.Scan()
 			IdStr := InputUser.Text()
-			Id, err2 := strconv.Atoi(IdStr)
-			if err2 != nil{
+			Id, errA := strconv.Atoi(IdStr)
+			if errA != nil{
 				fmt.Println("Ошибка: пустое или не правильное значение")
 			}
-			Err3 := mananger.TaskDone(Id)
-			if Err3 != nil{
-				fmt.Println(Err3)
+			err := mananger.TaskDone(Id)
+			if err != nil{
+				fmt.Println(err)
 			}
 		case "4":
-
+			fmt.Print("Введите айди задачи: ")
+			InputUser.Scan()
+			IdStr := InputUser.Text()
+			Id, errA := strconv.Atoi(IdStr)
+			if errA != nil{
+				fmt.Println("Ошибка: пустое или не правильное значение")
+			}
+			err := mananger.DeleteTask(Id)
+			if err != nil{
+				fmt.Println(err)
+			}
 		case "5":
-
+		fmt.Println("Введите тэг для поиска: ")
+		InputUser.Scan()
+		Tag := InputUser.Text()
+		err := mananger.SearchTask(Tag)
+		if err != nil{
+			fmt.Println(err)
+		}
 		case "0":
 			fmt.Println("Спасибо за использование моей программы!")
 			return
