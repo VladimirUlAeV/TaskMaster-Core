@@ -20,6 +20,7 @@ func menu(){
 func main(){
 	mananger := datastructur.Mananger()
 	var err error
+	var Counter int 
 	fmt.Println("Приветствую вас в Task Master!")
 	InputUser := bufio.NewScanner(os.Stdin)
 	for{
@@ -37,7 +38,7 @@ func main(){
 			fmt.Println("Введите описание задачи:")
 			InputUser.Scan()
  			Title := InputUser.Text()
-			err = mananger.NewTask(Tag, Title)
+			Counter, err = mananger.NewTask(Counter,Tag, Title)
 			if err != nil {
 			fmt.Println("Задача", "не создана по причине", err)
 			}else{

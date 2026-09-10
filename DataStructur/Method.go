@@ -13,13 +13,14 @@ func Mananger()*taskManenger{
 	}
 }
 
-func (t *taskManenger)NewTask(tag string, title string) error{
+func (t *taskManenger)NewTask(Counter int,tag string, title string) (int, error){
 	if tag == ""{
-		return errors.New("не ввели обязательные данные")
+		return 0 ,errors.New("не ввели обязательные данные")
 	}
+	Counter += 1
 	t.HowManyTask += 1
-	t.Task = append(t.Task,taskBar{+1, tag, false, title})
-	return nil
+	t.Task = append(t.Task,taskBar{Counter, tag, false, title})
+	return  Counter ,nil
 }
 
 func (t *taskManenger)AllTask(){
